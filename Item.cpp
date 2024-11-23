@@ -7,20 +7,23 @@ using namespace std;
 
 class Item{
     private:
+        static int nextID;
         int id;
         string name;
         string category;
         int quantity;
         double price;
     public:
-        Item(int id, string name, string category, int quantity, double price)
-            : id(id), name(name), category(category), quantity(quantity), price(price){}
-
+        Item(std::string name, int quantity, double price, std::string category)
+           : name(name), quantity(quantity), price(price), category(category) {
+            this->id = nextID++;
+        }
 
         int getId() const { return id; }
         string getName() const { return name; }
         int getQuantity() const { return quantity; }
         double getPrice() const { return price; }
+        string getCategory() const { return category; }
 
         void setQuantity(int quantity) { this -> quantity = quantity; }
         void setPrice(double price) { this -> price = price; }
@@ -29,5 +32,5 @@ class Item{
         cout << "ID: " << id << ", Name: " << name
              << ", Quantity: " << quantity << ", Price: $" << price << endl;
     }
-
 };
+int Item::nextID = 1;  // Initialize the static counter
